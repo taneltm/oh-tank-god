@@ -8,5 +8,7 @@ signal shoot
 enum ControllerType {
 	PLAYER_1,
 	PLAYER_2,
-	CPU,
+	COMPUTER_EASY,
+	COMPUTER_MEDIUM,
+	COMPUTER_HARD,
 }

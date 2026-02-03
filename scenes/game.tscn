@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b3wwr2tbjc420" path="res://scenes/tank.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://bj2icjbf6a3pb" path="res://scripts/InputControllers/input_controller_player.gd" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://c33vbkrnhhy4g" path="res://assets/environment.png" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://ck3weqgnbfgct" path="res://scripts/InputControllers/input_controller_cpu.gd" id="4_iywne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -543,12 +544,42 @@ sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 texture_filter = 1
 script = ExtResource("1_lbhrr")
 
-[node name="Tank" parent="." unique_id=1562048752 node_paths=PackedStringArray("input_controller") instance=ExtResource("1_uwrxv")]
-position = Vector2(152, 130)
-input_controller = NodePath("PlayerController")
+[node name="Tanks" type="Node2D" parent="." unique_id=1085094696]
 
-[node name="PlayerController" type="Node" parent="Tank" unique_id=278035776]
+[node name="Player1" parent="Tanks" unique_id=1562048752 node_paths=PackedStringArray("input_controller") instance=ExtResource("1_uwrxv")]
+position = Vector2(152, 130)
+input_controller = NodePath("InputController")
+model = 1
+
+[node name="InputController" type="Node" parent="Tanks/Player1" unique_id=278035776]
 script = ExtResource("2_lnu2h")
+
+[node name="Player2" parent="Tanks" unique_id=1515403316 node_paths=PackedStringArray("input_controller") instance=ExtResource("1_uwrxv")]
+position = Vector2(232, 130)
+input_controller = NodePath("InputController")
+model = 2
+
+[node name="InputController" type="Node" parent="Tanks/Player2" unique_id=719196835]
+script = ExtResource("2_lnu2h")
+controller_type = 1
+
+[node name="CPU1" parent="Tanks" unique_id=1881199137 node_paths=PackedStringArray("input_controller") instance=ExtResource("1_uwrxv")]
+position = Vector2(555, 284)
+input_controller = NodePath("InputController")
+model = 2
+
+[node name="InputController" type="Node" parent="Tanks/CPU1" unique_id=333502965]
+script = ExtResource("4_iywne")
+controller_type = 2
+
+[node name="CPU2" parent="Tanks" unique_id=827715455 node_paths=PackedStringArray("input_controller") instance=ExtResource("1_uwrxv")]
+position = Vector2(337, 346)
+input_controller = NodePath("InputController")
+model = 3
+
+[node name="InputController" type="Node" parent="Tanks/CPU2" unique_id=1722942947]
+script = ExtResource("4_iywne")
+controller_type = 3
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1801804971]
 anchor_mode = 0
