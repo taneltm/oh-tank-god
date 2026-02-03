@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b3wwr2tbjc420"]
 
+[ext_resource type="Script" uid="uid://c862yf34yay6g" path="res://scripts/tank.gd" id="1_c4xvs"]
 [ext_resource type="Texture2D" uid="uid://57tbw0x00pso" path="res://assets/tanks.png" id="1_qrxud"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4xvs"]
@@ -142,11 +143,18 @@ animations = [{
 size = Vector2(16, 16)
 
 [node name="Tank" type="CharacterBody2D" unique_id=1562048752]
+z_index = 5
+motion_mode = 1
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("1_c4xvs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1043883192]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_c50an")
 animation = &"player1"
-frame_progress = 0.06278601
+frame_progress = 0.16770372
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1739812441]
 shape = SubResource("RectangleShape2D_qrxud")
