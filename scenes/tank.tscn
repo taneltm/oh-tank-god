@@ -154,7 +154,12 @@ script = ExtResource("1_c4xvs")
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_c50an")
 animation = &"player1"
-frame_progress = 0.16770372
+frame_progress = 0.8769568
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1739812441]
 shape = SubResource("RectangleShape2D_qrxud")
+
+[node name="ProjectileSpawnPoint" type="Marker2D" parent="." unique_id=1768036472]
+unique_name_in_owner = true
+position = Vector2(0, -10)
+rotation = -1.5707964

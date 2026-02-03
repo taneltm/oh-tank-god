@@ -11,7 +11,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("%s_shoot" % player_type):
-		print("Player type: %s_shoot" % player_type)
 		shoot.emit()
 	
 	if Input.is_action_pressed("%s_up" % player_type):

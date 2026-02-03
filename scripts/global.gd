@@ -1,0 +1,13 @@
+extends Node
+
+const PROJECTILE = preload("uid://btnls06kb2edv")
+
+@onready var projectiles : Node2D
+
+func shoot(position: Vector2, rotation: float) -> void:
+	var projectile : Projectile = PROJECTILE.instantiate()
+	
+	projectile.position = position
+	projectile.rotation = rotation
+
+	projectiles.add_child(projectile)
