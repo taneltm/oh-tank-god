@@ -140,7 +140,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qrxud"]
-size = Vector2(16, 16)
+size = Vector2(12, 12)
 
 [node name="Tank" type="CharacterBody2D" unique_id=1562048752]
 z_index = 5

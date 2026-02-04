@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 		rotation = input_controller.direction.angle() + TAU / 4
 		%AnimatedSprite2D.play()
 	else:
-		var position_snapped = position.snapped(Vector2(4, 4))
+		var position_snapped = position.snapped(Vector2(1, 1))
 
 		position.x = move_toward(position.x, position_snapped.x, speed * delta)
 		position.y = move_toward(position.y, position_snapped.y, speed * delta)
