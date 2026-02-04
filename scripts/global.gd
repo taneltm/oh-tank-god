@@ -2,7 +2,9 @@ extends Node
 
 const PROJECTILE = preload("uid://btnls06kb2edv")
 
-@onready var projectiles : Node2D
+var tanks: Node2D
+var projectiles: Node2D
+var computer_target: Node2D
 
 func shoot(position: Vector2, rotation: float) -> void:
 	var projectile : Projectile = PROJECTILE.instantiate()

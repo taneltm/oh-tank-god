@@ -46,3 +46,4 @@ func _on_tile_collision(tile_map_layer: TileMapLayer, body_shape_index: int) -> 
 
 	atlas_coords.x += 1
 	tile_map_layer.set_cell(map_coord, cell_source_id, atlas_coords)
+	
