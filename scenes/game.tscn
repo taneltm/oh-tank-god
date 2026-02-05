@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://ckjy38vov2fgv"]
 
 [ext_resource type="Script" uid="uid://hy04hsepwm5b" path="res://scenes/game.gd" id="1_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://b3wwr2tbjc420" path="res://scenes/tank.tscn" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://bj2icjbf6a3pb" path="res://scripts/InputControllers/input_controller_player.gd" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://b3wwr2tbjc420" path="res://entities/tank/tank.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://bj2icjbf6a3pb" path="res://scripts/input_controllers/input_controller_player.gd" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://c33vbkrnhhy4g" path="res://assets/environment.png" id="2_yqjtg"]
-[ext_resource type="Script" uid="uid://ck3weqgnbfgct" path="res://scripts/InputControllers/input_controller_cpu.gd" id="4_iywne"]
+[ext_resource type="Script" uid="uid://ck3weqgnbfgct" path="res://scripts/input_controllers/input_controller_cpu.gd" id="4_iywne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")

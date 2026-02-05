@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b3wwr2tbjc420"]
 
-[ext_resource type="Script" uid="uid://c862yf34yay6g" path="res://scripts/tank.gd" id="1_c4xvs"]
-[ext_resource type="Texture2D" uid="uid://57tbw0x00pso" path="res://assets/tanks.png" id="1_qrxud"]
+[ext_resource type="Script" uid="uid://c862yf34yay6g" path="res://entities/tank/tank.gd" id="1_c4xvs"]
+[ext_resource type="Texture2D" uid="uid://57tbw0x00pso" path="res://entities/tank/tanks.png" id="1_qrxud"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4xvs"]
 atlas = ExtResource("1_qrxud")
