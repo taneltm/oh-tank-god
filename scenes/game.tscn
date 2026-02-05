@@ -15,6 +15,7 @@ texture = ExtResource("2_yqjtg")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 6
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/0/terrains_peering_bit/right_side = 6
 0:0/0/terrains_peering_bit/bottom_right_corner = 6
 0:0/0/terrains_peering_bit/bottom_side = 6
@@ -23,6 +24,7 @@ texture = ExtResource("2_yqjtg")
 0:0/0/terrains_peering_bit/top_left_corner = 6
 0:0/0/terrains_peering_bit/top_side = 6
 0:0/0/terrains_peering_bit/top_right_corner = 6
+0:0/0/custom_data_1 = true
 0:1/animation_speed = 8.0
 0:1/animation_frame_0/duration = 1.0
 0:1/animation_frame_1/duration = 1.0
@@ -538,6 +540,8 @@ terrain_set_0/terrain_7/name = "Flag down"
 terrain_set_0/terrain_7/color = Color(0.7601693, 0.2714003, 0, 1)
 custom_data_layer_0/name = "hit_points"
 custom_data_layer_0/type = 2
+custom_data_layer_1/name = "is_flag"
+custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 
 [node name="Game" type="Node2D" unique_id=833936134]

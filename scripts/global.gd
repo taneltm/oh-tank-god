@@ -1,5 +1,18 @@
 extends Node
 
+enum GameState {
+	MENU,
+	LEVEL_1,
+	GAME_OVER,
+}
+
+signal state_change
+
+var state := GameState.LEVEL_1:
+	set(value):
+		state = value
+		state_change.emit(value)
+
 const PROJECTILE = preload("uid://btnls06kb2edv")
 
 var debug = false
