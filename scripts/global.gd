@@ -8,6 +8,10 @@ enum GameState {
 
 signal state_change
 
+var levels := [
+	
+]
+
 var state := GameState.LEVEL_1:
 	set(value):
 		state = value
@@ -17,9 +21,12 @@ const PROJECTILE = preload("uid://btnls06kb2edv")
 
 var debug = false
 
-var tanks: Node2D
-var projectiles: Node2D
-var computer_target: Node2D
+var players : int = 0
+var level : int = 0
+var score : int = 0
+var tanks : Node2D
+var projectiles : Node2D
+var computer_target : Node2D
 
 func shoot(position: Vector2, rotation: float) -> void:
 	var projectile : Projectile = PROJECTILE.instantiate()
