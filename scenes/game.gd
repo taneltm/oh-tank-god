@@ -23,6 +23,7 @@ func _on_global_state_change(state: Global.GameState) -> void:
 func _on_level_change(_level: int) -> void:
 	print("Level change: ", _level)
 	%Camera2D.position = Vector2(Global.get_level_position())
+	_destroy_tanks_from_other_levels()
 
 func _new_game(number_of_players) -> void:
 	print("New game")
@@ -38,3 +39,8 @@ func _input(event: InputEvent) -> void:
 		_new_game(1)
 	elif event.is_action_pressed("start_2"):
 		_new_game(2)
+
+func _destroy_tanks_from_other_levels() -> void:
+	for tank in Global.tanks.get_children() as Array[Tank]:
+		if not Global.get_level_rect().has_point(tank.position):
+			tank.queue_free()

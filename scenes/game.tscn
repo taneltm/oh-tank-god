@@ -568,6 +568,14 @@ sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 texture_filter = 1
 script = ExtResource("1_lbhrr")
 
+[node name="Debug" type="Node" parent="." unique_id=1436235709]
+
+[node name="LevelSizeBox" type="Polygon2D" parent="Debug" unique_id=640954882]
+visible = false
+color = Color(0.18515038, 2.3698378e-05, 0.18514884, 1)
+offset = Vector2(1280, 0)
+polygon = PackedVector2Array(0, 0, 640, 0, 640, 480, 0, 480)
+
 [node name="IntroInstructions" type="RichTextLabel" parent="." unique_id=563913099]
 texture_filter = 4
 offset_left = 334.0
@@ -589,11 +597,6 @@ text = "+----------+----------+----------+
 Press 1 for single player
 Press 2 for multiplayer"
 fit_content = true
-
-[node name="DebugPolygon" type="Polygon2D" parent="." unique_id=640954882]
-color = Color(0.18515038, 2.3698378e-05, 0.18514884, 1)
-offset = Vector2(1280, 0)
-polygon = PackedVector2Array(0, 0, 640, 0, 640, 480, 0, 480)
 
 [node name="Markers" type="Node" parent="." unique_id=1057503144]
 

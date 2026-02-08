@@ -3,8 +3,9 @@ class_name Projectile extends Area2D
 const INITIAL_VELOCITY := 100
 const IMPACT_VELOCITY  := 20
 
-var velocity     := INITIAL_VELOCITY
-var has_collided := false
+var velocity             := INITIAL_VELOCITY
+var has_collided         := false
+var is_player_projectile := false
 
 @onready var sprite: AnimatedSprite2D = %AnimatedSprite2D
 
@@ -32,6 +33,9 @@ func _on_body_shape_entered(
 
 	if body is TileMapLayer:
 		_on_tile_collision(body, body_shape_index)
+	
+	elif body is Tank:
+		_on_tank_collision(body)
 		
 	velocity = IMPACT_VELOCITY
 	sprite.play("destroy")
@@ -72,3 +76,13 @@ func _on_flag_tile_collision(
 	tile_map_layer.set_cell(map_coord, cell_source_id, atlas_coords)
 	
 	Global.state = Global.GameState.GAME_OVER
+
+func _on_tank_collision(tank: Tank) -> void:
+	var is_friendly_fire = (
+		is_player_projectile and tank.is_player or
+		!is_player_projectile and !tank.is_player
+	)
+	
+	if is_friendly_fire: return
+	
+	tank.destroy()

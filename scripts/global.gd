@@ -21,7 +21,7 @@ var level : int = -1:
 
 const PROJECTILE = preload("uid://btnls06kb2edv")
 
-var debug = true
+var debug = false
 
 var players : int = 0
 var score : int = 0
@@ -30,11 +30,12 @@ var projectiles : Node
 var computer_target : Node2D
 var camera : Camera2D
 
-func shoot(position: Vector2, rotation: float) -> void:
+func shoot(position: Vector2, rotation: float, is_player_projectile: bool) -> void:
 	var projectile : Projectile = PROJECTILE.instantiate()
 	
 	projectile.position = position
 	projectile.rotation = rotation
+	projectile.is_player_projectile = is_player_projectile
 
 	projectiles.add_child(projectile)
 
