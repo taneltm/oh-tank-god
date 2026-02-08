@@ -1,32 +1,34 @@
 extends Node
 
 enum GameState {
-	MENU,
-	LEVEL_1,
+	INTRO,
+	PLAYING,
 	GAME_OVER,
 }
 
 signal state_change
+signal level_change
 
-var levels := [
-	
-]
-
-var state := GameState.LEVEL_1:
+var state := GameState.INTRO:
 	set(value):
 		state = value
 		state_change.emit(value)
 
+var level : int = -1:
+	set(value):
+		level = value
+		level_change.emit(value)
+
 const PROJECTILE = preload("uid://btnls06kb2edv")
 
-var debug = false
+var debug = true
 
 var players : int = 0
-var level : int = 0
 var score : int = 0
-var tanks : Node2D
-var projectiles : Node2D
+var tanks : Node
+var projectiles : Node
 var computer_target : Node2D
+var camera : Camera2D
 
 func shoot(position: Vector2, rotation: float) -> void:
 	var projectile : Projectile = PROJECTILE.instantiate()
@@ -35,3 +37,9 @@ func shoot(position: Vector2, rotation: float) -> void:
 	projectile.rotation = rotation
 
 	projectiles.add_child(projectile)
+
+func get_level_position() -> Vector2:
+	return Vector2(level * 640 * 2, 0)
+	
+func get_level_rect() -> Rect2:
+	return Rect2(Global.get_level_position(), Vector2(640, 480))

@@ -7,27 +7,31 @@ var LEVEL_COUNT := 1
 func _ready() -> void:
 	Global.tanks = %Tanks
 	Global.projectiles = %Projectiles
-	Global.computer_target = %ComputerTarget
-	
 	Global.state_change.connect(_on_global_state_change)
+	Global.level_change.connect(_on_level_change)
 	
-	# _next_level()
-
-func _on_global_state_change(state: Global.GameState) -> void:
-	if state == Global.GameState.GAME_OVER:
-		print("Game over!")
-
-func _new_game(number_of_players) -> void:
-	print("new game")
-	Global.players = number_of_players
 	Global.level = 0
 
-	_next_level()
+func _on_global_state_change(state: Global.GameState) -> void:
+	match state:
+		Global.GameState.INTRO:
+			%Camera2D.position = Vector2.ZERO
+		
+		Global.GameState.GAME_OVER:
+			print("Game over!")
+
+func _on_level_change(_level: int) -> void:
+	print("Level change: ", _level)
+	%Camera2D.position = Vector2(Global.get_level_position())
+
+func _new_game(number_of_players) -> void:
+	print("New game")
+	Global.players = number_of_players
+	Global.state = Global.GameState.PLAYING
+	Global.level = 1
 
 func _next_level() -> void:
 	Global.level += 1
-
-	%Camera2D.position = Vector2((Global.level - 1) * 640 * 2, 480 * 2)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("start_1"):
