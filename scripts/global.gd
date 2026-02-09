@@ -1,5 +1,7 @@
 extends Node
 
+var debug = true
+
 enum GameState {
 	INTRO,
 	PLAYING,
@@ -21,14 +23,12 @@ var level : int = -1:
 
 const PROJECTILE = preload("uid://btnls06kb2edv")
 
-var debug = false
-
 var players : int = 0
-var score : int = 0
 var tanks : Node
 var projectiles : Node
 var computer_target : Node2D
 var camera : Camera2D
+var score : Label
 
 func shoot(position: Vector2, rotation: float, is_player_projectile: bool) -> void:
 	var projectile : Projectile = PROJECTILE.instantiate()
@@ -44,3 +44,9 @@ func get_level_position() -> Vector2:
 	
 func get_level_rect() -> Rect2:
 	return Rect2(Global.get_level_position(), Vector2(640, 480))
+
+func victory() -> void:
+	pass
+	
+func defeat() -> void:
+	pass

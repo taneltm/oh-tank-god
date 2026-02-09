@@ -85,4 +85,8 @@ func _on_tank_collision(tank: Tank) -> void:
 	
 	if is_friendly_fire: return
 	
+	if not tank.is_player:
+		var score = Global.score.text.to_int()
+		Global.score.text = str(score + 100)
+
 	tank.destroy()

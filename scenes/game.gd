@@ -9,8 +9,12 @@ func _ready() -> void:
 	Global.projectiles = %Projectiles
 	Global.state_change.connect(_on_global_state_change)
 	Global.level_change.connect(_on_level_change)
-	
+	Global.tanks.child_exiting_tree.connect(_on_tank_exit_tree)
+	Global.score = %Score
 	Global.level = 0
+	
+	if not Global.debug:
+		%Debug.queue_free()
 
 func _on_global_state_change(state: Global.GameState) -> void:
 	match state:
@@ -29,6 +33,7 @@ func _new_game(number_of_players) -> void:
 	print("New game")
 	Global.players = number_of_players
 	Global.state = Global.GameState.PLAYING
+	Global.score.text = "0"
 	Global.level = 1
 
 func _next_level() -> void:
@@ -44,3 +49,25 @@ func _destroy_tanks_from_other_levels() -> void:
 	for tank in Global.tanks.get_children() as Array[Tank]:
 		if not Global.get_level_rect().has_point(tank.position):
 			tank.queue_free()
+
+func _on_tank_exit_tree(_tank: Tank) -> void:
+	var tank_counts = _get_tank_counts()
+	
+	if tank_counts["player"] > 0 and tank_counts["enemy"] == 0:
+		Global.victory()
+	elif tank_counts["player"] < 0:
+		Global.defeat()
+
+func _get_tank_counts() -> Dictionary:
+	var counts := {
+		"player": 0,
+		"enemy": 0,
+	}
+	
+	for tank in Global.tanks.get_children() as Array[Tank]:
+		if tank.is_player:
+			counts["player"] += 1
+		else:
+			counts["enemy"] += 1
+
+	return counts
