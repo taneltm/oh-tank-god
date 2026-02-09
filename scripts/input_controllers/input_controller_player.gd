@@ -14,12 +14,9 @@ func _process(delta: float) -> void:
 		shoot.emit()
 	
 	if Input.is_action_pressed("%s_up" % _player_type):
-		print("up")
 		direction = Vector2.UP
 
 	elif Input.is_action_pressed("%s_down" % _player_type):
-		print("down")
-		
 		direction = Vector2.DOWN
 
 	elif Input.is_action_pressed("%s_left" % _player_type):

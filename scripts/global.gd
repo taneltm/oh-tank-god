@@ -1,6 +1,6 @@
 extends Node
 
-var debug = true
+var debug = false
 
 enum GameState {
 	INTRO,
@@ -29,6 +29,8 @@ var projectiles : Node
 var computer_target : Node2D
 var camera : Camera2D
 var score : Label
+var game_over : BoxContainer
+var game_over_label : Label
 
 func shoot(position: Vector2, rotation: float, is_player_projectile: bool) -> void:
 	var projectile : Projectile = PROJECTILE.instantiate()
@@ -44,9 +46,3 @@ func get_level_position() -> Vector2:
 	
 func get_level_rect() -> Rect2:
 	return Rect2(Global.get_level_position(), Vector2(640, 480))
-
-func victory() -> void:
-	pass
-	
-func defeat() -> void:
-	pass

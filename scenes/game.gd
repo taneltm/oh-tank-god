@@ -11,7 +11,9 @@ func _ready() -> void:
 	Global.level_change.connect(_on_level_change)
 	Global.tanks.child_exiting_tree.connect(_on_tank_exit_tree)
 	Global.score = %Score
+	Global.game_over = %GameOver
 	Global.level = 0
+	Global.game_over.visible = false
 	
 	if not Global.debug:
 		%Debug.queue_free()
@@ -22,7 +24,11 @@ func _on_global_state_change(state: Global.GameState) -> void:
 			%Camera2D.position = Vector2.ZERO
 		
 		Global.GameState.GAME_OVER:
-			print("Game over!")
+			await get_tree().create_timer(2).timeout
+			%Camera2D.position = Vector2(-1280, 0)
+			Global.game_over.visible = true
+			await get_tree().create_timer(2).timeout
+			get_tree().reload_current_scene()
 
 func _on_level_change(_level: int) -> void:
 	print("Level change: ", _level)
@@ -51,12 +57,19 @@ func _destroy_tanks_from_other_levels() -> void:
 			tank.queue_free()
 
 func _on_tank_exit_tree(_tank: Tank) -> void:
+	await get_tree().create_timer(0.5).timeout
+
 	var tank_counts = _get_tank_counts()
 	
+	print("Player tanks: %d | Enemy tanks: %d" % [
+		tank_counts["player"],
+		tank_counts["enemy"],
+	])
+	
 	if tank_counts["player"] > 0 and tank_counts["enemy"] == 0:
-		Global.victory()
+		victory()
 	elif tank_counts["player"] < 0:
-		Global.defeat()
+		defeat()
 
 func _get_tank_counts() -> Dictionary:
 	var counts := {
@@ -65,9 +78,17 @@ func _get_tank_counts() -> Dictionary:
 	}
 	
 	for tank in Global.tanks.get_children() as Array[Tank]:
+		print(tank.name)
 		if tank.is_player:
 			counts["player"] += 1
 		else:
 			counts["enemy"] += 1
 
 	return counts
+
+func victory() -> void:
+	await get_tree().create_timer(2).timeout
+	_next_level()
+	
+func defeat() -> void:
+	Global.state = Global.GameState.GAME_OVER

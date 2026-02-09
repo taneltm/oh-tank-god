@@ -66,6 +66,7 @@ func _ready() -> void:
 	input_controller.shoot.connect(_shoot)
 
 func _physics_process(delta: float) -> void:
+	if Global.state == Global.GameState.GAME_OVER: return
 	if _is_destroyed == true: return
 
 	velocity = input_controller.direction * _speed
@@ -83,6 +84,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _shoot() -> void:
+	if Global.state == Global.GameState.GAME_OVER: return
 	if _is_destroyed == true: return
 
 	Global.shoot(
@@ -94,7 +96,7 @@ func _shoot() -> void:
 func destroy() -> void:
 	if _is_destroyed == true: return
 	
-	input_controller.shoot.disconnect(_shoot)
+	_is_destroyed = true
 	
 	%AnimatedSprite2D.play(%AnimatedSprite2D.animation + "_explosion")
 	await %AnimatedSprite2D.animation_finished

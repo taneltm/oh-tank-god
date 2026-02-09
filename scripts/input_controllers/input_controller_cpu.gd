@@ -78,6 +78,8 @@ func _debug_loop() -> void:
 	_debug_loop()
 
 func _ai_loop_easy() -> void:
+	if Global.state == Global.GameState.GAME_OVER: return
+	
 	direction = POSSIBLE_DIRECTIONS.pick_random()
 
 	await get_tree().create_timer(1.0).timeout
@@ -89,6 +91,8 @@ func _ai_loop_easy() -> void:
 	_ai_loop_easy()
 	
 func _ai_loop_medium() -> void:
+	if Global.state == Global.GameState.GAME_OVER: return
+
 	var direction_choices : Array[Vector2] = []
 	
 	if randi_range(0, 4):
@@ -110,6 +114,8 @@ func _ai_loop_medium() -> void:
 	_ai_loop_medium()
 	
 func _ai_loop_hard() -> void:
+	if Global.state == Global.GameState.GAME_OVER: return
+
 	direction = _4way_clamp(_get_direction_to_target_marker())
 	
 	await get_tree().create_timer(0.25).timeout
