@@ -35,7 +35,7 @@ func _on_global_state_change(state: Global.GameState) -> void:
 			%Camera2D.position = Vector2(-1280, 0)
 			Global.game_over.visible = true
 			await get_tree().create_timer(2).timeout
-			get_tree().reload_current_scene()
+			_reboot()
 
 func _on_level_change(_level: int) -> void:
 	print("Level change: ", _level)
@@ -55,9 +55,16 @@ func _next_level() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("start_1"):
-		_new_game(1)
+		if Global.level == 0:
+			_new_game(1)
+		else:
+			_reboot()
+
 	elif event.is_action_pressed("start_2"):
-		_new_game(2)
+		if Global.level == 0:
+			_new_game(2)
+		else:
+			_reboot()
 
 func _destroy_tanks_from_other_levels() -> void:
 	for tank in Global.tanks.get_children() as Array[Tank]:
@@ -100,3 +107,6 @@ func victory() -> void:
 	
 func defeat() -> void:
 	Global.state = Global.GameState.GAME_OVER
+
+func _reboot() -> void:
+	get_tree().reload_current_scene()
