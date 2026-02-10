@@ -82,9 +82,9 @@ func _on_tank_exit_tree(_tank: Tank) -> void:
 	])
 	
 	if tank_counts["player"] > 0 and tank_counts["enemy"] == 0:
-		victory()
+		_victory()
 	elif tank_counts["player"] < 0:
-		defeat()
+		_defeat()
 
 func _get_tank_counts() -> Dictionary:
 	var counts := {
@@ -101,11 +101,11 @@ func _get_tank_counts() -> Dictionary:
 
 	return counts
 
-func victory() -> void:
+func _victory() -> void:
 	await get_tree().create_timer(2).timeout
 	_next_level()
 	
-func defeat() -> void:
+func _defeat() -> void:
 	Global.state = Global.GameState.GAME_OVER
 
 func _reboot() -> void:
