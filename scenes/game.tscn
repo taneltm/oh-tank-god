@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://hy04hsepwm5b" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="FontFile" uid="uid://cx8vb12auy8sn" path="res://assets/fonts/CascadiaCodeNF.ttf" id="2_p57ef"]
+[ext_resource type="AudioStream" uid="uid://b6p8hmt6o6c68" path="res://assets/audio/intro.wav" id="2_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://c33vbkrnhhy4g" path="res://assets/environment.png" id="2_yqjtg"]
+[ext_resource type="AudioStream" uid="uid://cqx6dp6o1fjh1" path="res://assets/audio/nes-noise-d4.wav" id="3_0tnpc"]
 [ext_resource type="Script" uid="uid://dctgeku5nou6w" path="res://scripts/markers/flag_marker.gd" id="3_gee14"]
 [ext_resource type="Script" uid="uid://bhr37ccqgwnpt" path="res://scripts/markers/spawn_marker.gd" id="3_u5sy4"]
+[ext_resource type="AudioStream" uid="uid://d0ps4oc20wptn" path="res://assets/audio/nes-noise-e4.wav" id="4_gee14"]
 
 [sub_resource type="Theme" id="Theme_iywne"]
 
@@ -569,6 +572,24 @@ sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 [node name="Game" type="Node2D" unique_id=833936134]
 texture_filter = 1
 script = ExtResource("1_lbhrr")
+
+[node name="Sound" type="Node" parent="." unique_id=1909750579]
+
+[node name="IntroTune" type="AudioStreamPlayer" parent="Sound" unique_id=48794864]
+unique_name_in_owner = true
+stream = ExtResource("2_u5sy4")
+volume_db = -20.0
+autoplay = true
+
+[node name="SfxShoot" type="AudioStreamPlayer" parent="Sound" unique_id=1426259440]
+unique_name_in_owner = true
+stream = ExtResource("3_0tnpc")
+volume_db = -20.0
+
+[node name="SfxProjectileCollide" type="AudioStreamPlayer" parent="Sound" unique_id=1167719203]
+unique_name_in_owner = true
+stream = ExtResource("4_gee14")
+volume_db = -20.0
 
 [node name="Debug" type="Node" parent="." unique_id=1436235709]
 unique_name_in_owner = true

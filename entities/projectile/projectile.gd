@@ -12,6 +12,9 @@ var is_player_projectile := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if is_player_projectile:
+		Global.sfx_shoot.play(0)
+
 	await sprite.animation_finished
 	sprite.play("fly")
 
@@ -39,6 +42,10 @@ func _on_body_shape_entered(
 		
 	velocity = IMPACT_VELOCITY
 	sprite.play("destroy")
+	
+	if is_player_projectile:
+		Global.sfx_projectile_collide.play(0)
+
 	await sprite.animation_finished
 	queue_free()
 

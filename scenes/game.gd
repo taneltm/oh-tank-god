@@ -1,5 +1,7 @@
 extends Node2D
+
 @onready var camera_2d: Camera2D = %Camera2D
+@onready var intro_tune: AudioStreamPlayer = %IntroTune
 
 var LEVEL_COUNT := 1
 
@@ -14,6 +16,11 @@ func _ready() -> void:
 	Global.game_over = %GameOver
 	Global.level = 0
 	Global.game_over.visible = false
+	Global.sfx_shoot = %SfxShoot
+	Global.sfx_projectile_collide = %SfxProjectileCollide
+	
+	intro_tune
+	intro_tune.play()
 	
 	if not Global.debug:
 		%Debug.queue_free()
@@ -37,6 +44,7 @@ func _on_level_change(_level: int) -> void:
 
 func _new_game(number_of_players) -> void:
 	print("New game")
+	intro_tune.stop()
 	Global.players = number_of_players
 	Global.state = Global.GameState.PLAYING
 	Global.score.text = "0"

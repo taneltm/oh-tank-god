@@ -31,6 +31,8 @@ var camera : Camera2D
 var score : Label
 var game_over : BoxContainer
 var game_over_label : Label
+var sfx_shoot : AudioStreamPlayer
+var sfx_projectile_collide : AudioStreamPlayer
 
 func shoot(position: Vector2, rotation: float, is_player_projectile: bool) -> void:
 	var projectile : Projectile = PROJECTILE.instantiate()
