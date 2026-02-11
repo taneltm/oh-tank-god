@@ -76,7 +76,7 @@ func _on_tank_exit_tree(_tank: Tank) -> void:
 	
 	if tank_counts["player"] > 0 and tank_counts["enemy"] == 0:
 		_victory()
-	elif tank_counts["player"] < 0:
+	elif tank_counts["player"] == 0:
 		_defeat()
 
 func _get_tank_counts() -> Dictionary:
