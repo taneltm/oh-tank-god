@@ -38,12 +38,10 @@ func _on_global_state_change(state: Global.GameState) -> void:
 			_reboot()
 
 func _on_level_change(_level: int) -> void:
-	print("Level change: ", _level)
 	%Camera2D.position = Vector2(Global.get_level_position())
 	_destroy_tanks_from_other_levels()
 
 func _new_game(number_of_players) -> void:
-	print("New game")
 	intro_tune.stop()
 	Global.players = number_of_players
 	Global.state = Global.GameState.PLAYING
@@ -76,11 +74,6 @@ func _on_tank_exit_tree(_tank: Tank) -> void:
 
 	var tank_counts = _get_tank_counts()
 	
-	print("Player tanks: %d | Enemy tanks: %d" % [
-		tank_counts["player"],
-		tank_counts["enemy"],
-	])
-	
 	if tank_counts["player"] > 0 and tank_counts["enemy"] == 0:
 		_victory()
 	elif tank_counts["player"] < 0:
@@ -93,7 +86,6 @@ func _get_tank_counts() -> Dictionary:
 	}
 	
 	for tank in Global.tanks.get_children() as Array[Tank]:
-		print(tank.name)
 		if tank.is_player:
 			counts["player"] += 1
 		else:

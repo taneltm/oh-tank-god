@@ -7,11 +7,11 @@ Play it here: [https://taneltm.itch.io/oh-tank-god](https://taneltm.itch.io/oh-t
 
 ## Controls
 
-Pressing 1 or 2 on the intro screen starts the game in one- or two-player mode.
+Pressing 1 (or controller start) or 2 on the intro screen starts the game in one- or two-player mode.
 
 **Player 1 controls:**
-- Move: WASD
-- Shoot: Space
+- Move: WASD or Controller d-pad
+- Shoot: Space or Controller X/A
 
 **Player 2 controls:**
 - Move: Arrow key
