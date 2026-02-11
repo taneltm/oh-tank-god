@@ -6,6 +6,7 @@ const IMPACT_VELOCITY  := 20
 var velocity             := INITIAL_VELOCITY
 var has_collided         := false
 var is_player_projectile := false
+var is_piercing          := false
 
 @onready var sprite: AnimatedSprite2D = %AnimatedSprite2D
 
@@ -35,7 +36,11 @@ func _on_body_shape_entered(
 	has_collided = true
 
 	if body is TileMapLayer:
-		_on_tile_collision(body, body_shape_index)
+		var is_tile_destroyed = _on_tile_collision(body, body_shape_index)
+		
+		if is_tile_destroyed and is_piercing:
+			has_collided = false
+			return
 	
 	elif body is Tank:
 		_on_tank_collision(body)
@@ -47,9 +52,10 @@ func _on_body_shape_entered(
 		Global.sfx_projectile_collide.play(0)
 
 	await sprite.animation_finished
+	
 	queue_free()
 
-func _on_tile_collision(tile_map_layer: TileMapLayer, _body_shape_index: int) -> void:
+func _on_tile_collision(tile_map_layer: TileMapLayer, _body_shape_index: int) -> bool:
 	var local_position := tile_map_layer.to_local(global_position)
 	var map_coord      := tile_map_layer.local_to_map(local_position)
 	var tile_data      := tile_map_layer.get_cell_tile_data(map_coord)
@@ -60,9 +66,13 @@ func _on_tile_collision(tile_map_layer: TileMapLayer, _body_shape_index: int) ->
 
 	if hp:
 		_on_destroyable_tile_collision(tile_map_layer, map_coord, cell_source_id, atlas_coords)
+		return true
 
 	elif is_flag:
 		_on_flag_tile_collision(tile_map_layer, map_coord, cell_source_id, atlas_coords)
+		return true
+		
+	return false
 
 func _on_destroyable_tile_collision(
 	tile_map_layer: TileMapLayer,

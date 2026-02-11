@@ -34,12 +34,18 @@ var game_over_label : Label
 var sfx_shoot : AudioStreamPlayer
 var sfx_projectile_collide : AudioStreamPlayer
 
-func shoot(position: Vector2, rotation: float, is_player_projectile: bool) -> void:
+func shoot(
+	position: Vector2,
+	rotation: float,
+	is_player_projectile: bool,
+	is_piercing: bool
+) -> void:
 	var projectile : Projectile = PROJECTILE.instantiate()
 	
 	projectile.position = position
 	projectile.rotation = rotation
 	projectile.is_player_projectile = is_player_projectile
+	projectile.is_piercing = is_piercing
 
 	projectiles.add_child(projectile)
 
