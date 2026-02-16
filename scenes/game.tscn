@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://dctgeku5nou6w" path="res://scripts/markers/flag_marker.gd" id="3_gee14"]
 [ext_resource type="Script" uid="uid://bhr37ccqgwnpt" path="res://scripts/markers/spawn_marker.gd" id="3_u5sy4"]
 [ext_resource type="AudioStream" uid="uid://d0ps4oc20wptn" path="res://assets/audio/nes-noise-e4.wav" id="4_gee14"]
+[ext_resource type="AudioStream" uid="uid://hma1atln0skd" path="res://assets/audio/powerup.wav" id="5_kvpfn"]
+[ext_resource type="AudioStream" uid="uid://dxgjn31ixyogt" path="res://assets/audio/powerdown.wav" id="6_dinhu"]
 [ext_resource type="PackedScene" uid="uid://shaylqqwtu47" path="res://entities/powerup/powerup.tscn" id="8_0tnpc"]
 
 [sub_resource type="Theme" id="Theme_iywne"]
@@ -591,6 +593,14 @@ volume_db = -20.0
 unique_name_in_owner = true
 stream = ExtResource("4_gee14")
 volume_db = -20.0
+
+[node name="SfxPowerup" type="AudioStreamPlayer" parent="Sound" unique_id=29051378]
+unique_name_in_owner = true
+stream = ExtResource("5_kvpfn")
+
+[node name="SfxPowerdown" type="AudioStreamPlayer" parent="Sound" unique_id=1882270183]
+unique_name_in_owner = true
+stream = ExtResource("6_dinhu")
 
 [node name="Debug" type="Node" parent="." unique_id=1436235709]
 unique_name_in_owner = true

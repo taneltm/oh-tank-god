@@ -117,11 +117,15 @@ func destroy() -> void:
 	queue_free()
 
 func powerup(p_type: Powerup.Type) -> void:
-	print("Powerup!")
+	if is_player:
+		Global.sfx_powerup.play()
+
 	powerup_type = p_type
 	powerup_timer.wait_time = 10
 	powerup_timer.start()
 	
 func powerup_remove() -> void:
-	print("Powerup ended")
+	if is_player:
+		Global.sfx_powerdown.play()
+
 	powerup_type = Powerup.Type.NONE

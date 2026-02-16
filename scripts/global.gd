@@ -33,6 +33,8 @@ var game_over : BoxContainer
 var game_over_label : Label
 var sfx_shoot : AudioStreamPlayer
 var sfx_projectile_collide : AudioStreamPlayer
+var sfx_powerup : AudioStreamPlayer
+var sfx_powerdown : AudioStreamPlayer
 
 func shoot(
 	position: Vector2,

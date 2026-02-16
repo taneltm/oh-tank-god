@@ -18,6 +18,8 @@ func _ready() -> void:
 	Global.game_over.visible = false
 	Global.sfx_shoot = %SfxShoot
 	Global.sfx_projectile_collide = %SfxProjectileCollide
+	Global.sfx_powerup = %SfxPowerup
+	Global.sfx_powerdown = %SfxPowerdown
 	
 	intro_tune
 	intro_tune.play()
